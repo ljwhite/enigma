@@ -1,4 +1,4 @@
-require '../lib/enigma.rb'
+require_relative '../lib/enigma.rb'
 require_relative 'test_helper.rb'
 
 class EnigmaTest < Minitest::Test
@@ -14,6 +14,7 @@ class EnigmaTest < Minitest::Test
                   key: "02715",
                   date: "040895"
                  }
-    assert_equal [2,27,71,15], actual
+    assert_equal [3,27,73,20], actual
+  end
 
 end

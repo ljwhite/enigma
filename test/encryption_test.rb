@@ -1,4 +1,4 @@
-require '../lib/encryption.rb'
+require_relative '../lib/encryption.rb'
 require_relative 'test_helper.rb'
 
 class EncryptionTest < Minitest::Test

@@ -13,8 +13,8 @@ module Encryption
    ((date.to_i ** 2).to_s[-4..-1]).split("").map {|num| num.to_i}
   end
 
-  def final_shift(key, offset)
-    key.map.with_index { |v,i| v + offset[i] }
+  def final_shift(split_key, offset)
+    split_key.map.with_index { |v,i| v + offset[i] }
   end
 
   def encrypt(message,final_shift)
