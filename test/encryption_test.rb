@@ -25,4 +25,15 @@ class EncryptionTest < Minitest::Test
     assert_equal expected, actual
   end
 
+  def test_it_can_generate_random_5_digit_key
+    actual = Encryption.generate_key
+    assert_equal 5, actual.length
+  end
+
+  def test_it_can_provide_todays_date
+    expected = "060720"
+    actual = Encryption.date_today
+    assert_equal expected, actual
+  end
+
 end

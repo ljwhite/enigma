@@ -1,3 +1,4 @@
+require 'pry'
 module Encryption
   module_function
 
@@ -27,6 +28,16 @@ module Encryption
       character_set[new_char_index]
     end
     offset_array.join
+  end
+
+  def generate_key
+    random_number = rand(100000).to_s
+    random_number = random_number.rjust(5,"0") if random_number.length < 5
+    random_number
+  end
+
+  def date_today
+    date = Date.today.strftime("%m%d%y")
   end
 
 end
