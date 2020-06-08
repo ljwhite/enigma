@@ -26,16 +26,22 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_encryption_can_generate_key
+    @enigma.stubs(:generate_key).returns("02715")
     actual = @enigma.encrypt("hello world")
-    expected =  "05563"
-    assert_equal expected.length, actual[:key].length
+    assert_equal 5, actual[:key].length
+    assert_equal "02715", actual[:key]
   end
 
   def test_it_can_encrypt_with_only_message
     @enigma.stubs(:date_today).returns("040895")
+    @enigma.stubs(:generate_key).returns("02715")
     actual = @enigma.encrypt("hello world")
 
-    expected =  {}
+    expected =  {
+                  encryption: "keder ohulw",
+                  key: "02715",
+                  date: "040895"
+                 }
     assert_equal expected, actual
   end
 
