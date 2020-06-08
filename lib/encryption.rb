@@ -23,6 +23,10 @@ module Encryption
     split_key.map.with_index { |v,i| v + offset[i] }
   end
 
+  def shift(key, date)
+    final_shift(split_keys(key), create_offset(date))
+  end
+
   def total_shift(shift, char, index)
     @offset = shift[index % 4]
     @original = character_set.find_index(char)

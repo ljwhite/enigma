@@ -14,18 +14,13 @@ include Encryption
   def encrypt_message
     date = date_today
     key = generate_key
-
-    shift = final_shift(
-      split_keys(key),
-      create_offset(date)
-      )
+    shift = shift(key, date)
 
     @message_in.each_line do |line|
-      @message_out.write(Encryption.encrypted_message(line, shift))
+      @message_out.write(encrypted_message(line, shift))
     end
     puts "Created #{ARGV[1]} with the key #{key} and the date #{date}."
   end
-
 end
 
 encrypt_runner = EncryptRunner.new

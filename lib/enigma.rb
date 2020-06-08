@@ -8,10 +8,7 @@ include Encryption
     date = date_today unless date
     key = generate_key unless key
 
-    shift = final_shift(
-      split_keys(key),
-      create_offset(date)
-      )
+    shift = shift(key, date)
     message_encrypted = encrypted_message(message, shift)
     hash = {encryption: message_encrypted,
             key: key,
