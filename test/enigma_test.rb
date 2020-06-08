@@ -1,5 +1,6 @@
-require_relative '../lib/enigma.rb'
 require_relative 'test_helper.rb'
+require_relative '../lib/enigma.rb'
+
 require 'mocha/minitest'
 
 class EnigmaTest < Minitest::Test
@@ -33,7 +34,7 @@ class EnigmaTest < Minitest::Test
   def test_it_can_encrypt_with_only_message
     @enigma.stubs(:date_today).returns("040895")
     actual = @enigma.encrypt("hello world")
-    
+
     expected =  {}
     assert_equal expected, actual
   end
