@@ -7,7 +7,6 @@ include Encryption
   def encrypt(message, key = nil, date = nil)
     date = date_today unless date
     key = generate_key unless key
-
     shift = shift(key, date)
     message_encrypted = encrypted_message(message, shift)
     hash = {encryption: message_encrypted,
