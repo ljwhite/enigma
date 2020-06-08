@@ -17,4 +17,16 @@ class EnigmaTest < Minitest::Test
     assert_equal expected, actual
   end
 
+  def test_it_can_generate_date
+    actual = @enigma.encrypt("hello world", "02715")
+    expected =  "060820"
+    assert_equal expected, actual[:date]
+  end
+
+  def test_it_can_generate_key
+    actual = @enigma.encrypt("hello world")
+    expected =  "05563"
+    assert_equal expected.length, actual[:key].length 
+  end
+
 end
