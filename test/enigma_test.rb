@@ -14,7 +14,7 @@ class EnigmaTest < Minitest::Test
                   key: "02715",
                   date: "040895"
                  }
-    assert_equal [3,27,73,20], actual
+    assert_equal expected, actual
   end
 
 end

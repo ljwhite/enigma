@@ -20,7 +20,13 @@ class EncryptionTest < Minitest::Test
   end
 
   def test_it_can_encrypt
-    actual = Encryption.encrypt("hello world", [3,27,73,20])
+    actual = Encryption.encrypted_message("hello world", [3,27,73,20])
+    expected =  "keder ohulw"
+    assert_equal expected, actual
+  end
+
+  def test_it_can_encrypt_uppercase_characters
+    actual = Encryption.encrypted_message("HELLO WORLD", [3, 27, 73, 20])
     expected =  "keder ohulw"
     assert_equal expected, actual
   end
