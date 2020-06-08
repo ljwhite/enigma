@@ -5,10 +5,10 @@ require 'date'
 class EncryptRunner < Enigma
 include Encryption
 
-attr_reader :message
-  def initialize(message = "hello world", encrypted_message = "bhgjhg")
-    @message = File.open(ARGV[0])
-    @encrypted_message = File.open(ARGV[1],"w")
+attr_reader :message, :encrypted_message
+  def initialize(message = nil, encrypted_message = nil)
+    @message = File.open(ARGV[0]) unless message
+    @encrypted_message = File.open(ARGV[1],"w") unless encrypted_message
     @enigma = Enigma.new
   end
 
@@ -43,5 +43,5 @@ attr_reader :message
 
 end
 #put in test
-example = EncryptRunner.new
-example.encrypt_message_alt
+# example = EncryptRunner.new
+# example.encrypt_message_alt
