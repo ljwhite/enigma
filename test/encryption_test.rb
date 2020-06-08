@@ -1,5 +1,5 @@
-require_relative '../lib/encryption.rb'
 require_relative 'test_helper.rb'
+require_relative '../lib/encryption.rb'
 
 class EncryptionTest < Minitest::Test
 
@@ -19,6 +19,14 @@ class EncryptionTest < Minitest::Test
     assert_equal expected, actual
   end
 
+  def test_it_can_create_shift_in_one_method
+    key = "02715"
+    date = "040895"
+    expected = [3,27,73,20]
+    actual = Encryption.shift(key,date)
+    assert_equal expected, actual
+  end
+
   def test_it_can_encrypt
     actual = Encryption.encrypted_message("hello world", [3,27,73,20])
     expected =  "keder ohulw"
@@ -26,7 +34,7 @@ class EncryptionTest < Minitest::Test
   end
 
   def test_it_can_encrypt_uppercase_characters
-    actual = Encryption.encrypted_message("HELLO WORLD", [3, 27, 73, 20])
+    actual = Encryption.encrypted_message("HeLLO WorLD", [3, 27, 73, 20])
     expected =  "keder ohulw"
     assert_equal expected, actual
   end
@@ -44,6 +52,7 @@ class EncryptionTest < Minitest::Test
 
   def test_it_can_provide_todays_date
     expected = "060820"
+    stubs(:date_today).returns("060820")
     actual = Encryption.date_today
     assert_equal expected, actual
   end

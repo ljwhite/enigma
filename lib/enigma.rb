@@ -1,17 +1,14 @@
 require_relative '../lib/encryption.rb'
+require 'date'
 
 class Enigma
 include Encryption
 
   def encrypt(message, key = nil, date = nil)
-    date = Encryption.date_today unless date
-    key = Encryption.generate_key unless key
-
-    shift = Encryption.final_shift(
-      Encryption.split_keys(key),
-      Encryption.create_offset(date)
-      )
-    message_encrypted = Encryption.encrypted_message(message, shift)
+    date = date_today unless date
+    key = generate_key unless key
+    shift = shift(key, date)
+    message_encrypted = encrypted_message(message, shift)
     hash = {encryption: message_encrypted,
             key: key,
             date: date
@@ -20,12 +17,12 @@ include Encryption
   end
 
   def decrypt(cipher, key, date = nil)
-    date = Encryption.date_today unless date
-    shift = Encryption.final_shift(
-      Encryption.split_keys(key),
-      Encryption.create_offset(date)
+    date = date_today unless date
+    shift = final_shift(
+      split_keys(key),
+      create_offset(date)
     )
-    message_decrypted = Encryption.decrypted_message(cipher, shift)
+    message_decrypted = decrypted_message(cipher, shift)
     hash = {decryption: message_decrypted,
             key: key,
             date: date

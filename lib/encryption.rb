@@ -1,4 +1,5 @@
 require 'pry'
+require 'date'
 module Encryption
   module_function
 
@@ -20,6 +21,10 @@ module Encryption
 
   def final_shift(split_key, offset)
     split_key.map.with_index { |v,i| v + offset[i] }
+  end
+
+  def shift(key, date)
+    final_shift(split_keys(key), create_offset(date))
   end
 
   def total_shift(shift, char, index)
