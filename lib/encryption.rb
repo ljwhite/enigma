@@ -1,4 +1,5 @@
 require 'pry'
+require 'date'
 module Encryption
   module_function
 
