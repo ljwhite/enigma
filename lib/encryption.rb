@@ -24,15 +24,15 @@ module Encryption
     offset_array = split_message.map.with_index do |char, index|
       offset = shift[index % 4]
       original = character_set.find_index(char)
-      new_char_index = (original + offset) % 27
+      # add if/else to count for valid characters
+      if character_set.include?(char)
+        new_char_index = (original + offset) % 27
+      else
+        new_char_index = original % 27
+      end
       character_set[new_char_index]
     end
     offset_array.join
-  end
-
-  def encryption_return_hash
-    hash = {}
-  #  hash[:encryption] =
   end
 
   def generate_key

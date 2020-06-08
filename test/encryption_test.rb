@@ -31,6 +31,12 @@ class EncryptionTest < Minitest::Test
     assert_equal expected, actual
   end
 
+  def test_it_can_handle_invalid_characters
+    actual = Encryption.encrypted_message("hello, world", [3, 27, 73, 20])
+    expected =  "keder ohulw"
+    assert_equal expected, actual
+  end
+
   def test_it_can_generate_random_5_digit_key
     actual = Encryption.generate_key
     assert_equal 5, actual.length
