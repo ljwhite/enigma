@@ -17,16 +17,26 @@ class EnigmaTest < Minitest::Test
     assert_equal expected, actual
   end
 
-  def test_it_can_generate_date
+  def test_encryption_can_generate_date
     actual = @enigma.encrypt("hello world", "02715")
     expected =  "060820"
     assert_equal expected, actual[:date]
   end
 
-  def test_it_can_generate_key
+  def test_encryption_can_generate_key
     actual = @enigma.encrypt("hello world")
     expected =  "05563"
-    assert_equal expected.length, actual[:key].length 
+    assert_equal expected.length, actual[:key].length
+  end
+
+  def test_it_can_decrypt
+    actual = @enigma.decrypt("keder ohulw", "02715", "040895")
+    expected = {
+                decryption: "hello world",
+                key: "02715",
+                date: "040895"
+                }
+    assert_equal expected, actual
   end
 
 end

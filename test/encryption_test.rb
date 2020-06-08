@@ -33,7 +33,7 @@ class EncryptionTest < Minitest::Test
 
   def test_it_can_handle_invalid_characters
     actual = Encryption.encrypted_message("hello, world", [3, 27, 73, 20])
-    expected =  "keder ohulw"
+    expected =  "keder,sprrdx"
     assert_equal expected, actual
   end
 
@@ -43,8 +43,20 @@ class EncryptionTest < Minitest::Test
   end
 
   def test_it_can_provide_todays_date
-    expected = "060720"
+    expected = "060820"
     actual = Encryption.date_today
+    assert_equal expected, actual
+  end
+
+  def test_it_can_decrypt
+    expected = "hello world"
+    actual = Encryption.decrypted_message("keder ohulw", [3,27,73,20])
+    assert_equal expected, actual
+  end
+
+  def test_decryption_can_ignore_invalid_characters
+    expected = "hello, world"
+    actual = actual = Encryption.decrypted_message("keder,sprrdx", [3,27,73,20])
     assert_equal expected, actual
   end
 
