@@ -15,7 +15,6 @@ include Encryption
     date = ARGV[3]
     key = ARGV[2]
     shift = shift(key, date)
-
     @message_in.each_line do |line|
       @message_out.write(decrypted_message(line, shift))
     end

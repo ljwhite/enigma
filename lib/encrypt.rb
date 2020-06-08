@@ -15,7 +15,6 @@ include Encryption
     date = date_today
     key = generate_key
     shift = shift(key, date)
-
     @message_in.each_line do |line|
       @message_out.write(encrypted_message(line, shift))
     end
