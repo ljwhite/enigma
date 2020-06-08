@@ -23,7 +23,7 @@ include Encryption
     @message_in.each_line do |line|
       @message_out.write(Encryption.decrypted_message(line, shift))
     end
-    puts "Created decrypted.txt with the key #{key} and the date #{date}."
+    puts "Created #{ARGV[1]} with the key #{key} and the date #{date}."
   end
 
 end

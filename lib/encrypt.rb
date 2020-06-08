@@ -6,8 +6,8 @@ class EncryptRunner < Enigma
 include Encryption
 
   def initialize
-    @message = File.open(ARGV[0])
-    @encrypted_message = File.open(ARGV[1],"w")
+    @message_in = File.open(ARGV[0])
+    @message_out = File.open(ARGV[1],"w")
     @enigma = Enigma.new
   end
 
@@ -20,10 +20,10 @@ include Encryption
       create_offset(date)
       )
 
-    @message.each_line do |line|
-      @encrypted_message.write(Encryption.encrypted_message(line, shift))
+    @message_in.each_line do |line|
+      @message_out.write(Encryption.encrypted_message(line, shift))
     end
-    puts "Created encrypted.txt with the key #{key} and the date #{date}."
+    puts "Created #{ARGV[1]} with the key #{key} and the date #{date}."
   end
 
 end
