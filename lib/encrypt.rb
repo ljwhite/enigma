@@ -5,8 +5,6 @@ require 'date'
 class EncryptRunner < Enigma
 include Encryption
 
-attr_reader :message, :encrypted_message, :key, :date
-
   def initialize
     @message = File.open(ARGV[0])
     @encrypted_message = File.open(ARGV[1],"w")
@@ -14,8 +12,8 @@ attr_reader :message, :encrypted_message, :key, :date
   end
 
   def encrypt_message
-    @date = date_today
-    @key = generate_key
+    date = date_today
+    key = generate_key
 
     shift = final_shift(
       split_keys(key),
