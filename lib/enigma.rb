@@ -18,10 +18,7 @@ include Encryption
 
   def decrypt(cipher, key, date = nil)
     date = date_today unless date
-    shift = final_shift(
-      split_keys(key),
-      create_offset(date)
-    )
+    shift = shift(key, date)
     message_decrypted = decrypted_message(cipher, shift)
     hash = {decryption: message_decrypted,
             key: key,
