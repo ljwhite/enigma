@@ -73,6 +73,6 @@ module Encryption
   end
 
   def date_today
-    date = Date.today.strftime("%m%d%y")
+    Date.today.strftime("%m%d%y")
   end
 end

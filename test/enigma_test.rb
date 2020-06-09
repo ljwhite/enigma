@@ -1,6 +1,5 @@
-require_relative 'test_helper.rb'
+require_relative '../test_helper.rb'
 require_relative '../lib/enigma.rb'
-require 'mocha/minitest'
 
 class EnigmaTest < Minitest::Test
 
