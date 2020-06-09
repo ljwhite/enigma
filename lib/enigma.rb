@@ -9,22 +9,24 @@ include Encryption
     key = generate_key unless key
     shift = shift(key, date)
     message_encrypted = encrypted_message(message, shift)
-    hash = {encryption: message_encrypted,
-            key: key,
-            date: date
-          }
-    hash
+    {
+      encryption: message_encrypted,
+      key: key,
+      date: date
+    }
+
   end
 
   def decrypt(cipher, key, date = nil)
     date = date_today unless date
     shift = shift(key, date)
     message_decrypted = decrypted_message(cipher, shift)
-    hash = {decryption: message_decrypted,
-            key: key,
-            date: date
-          }
-    hash
+    {
+      decryption: message_decrypted,
+      key: key,
+      date: date
+    }
+
   end
 
 end

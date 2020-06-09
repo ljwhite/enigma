@@ -3,8 +3,6 @@ require_relative '../lib/encrypt.rb'
 require_relative '../lib/enigma.rb'
 require_relative '../lib/encryption.rb'
 
-require 'mocha/minitest'
-
 class EncryptRunnerTest < Minitest::Test
 
   def setup
