@@ -36,7 +36,6 @@ class EnigmaTest < Minitest::Test
     @enigma.stubs(:date_today).returns("040895")
     @enigma.stubs(:generate_key).returns("02715")
     actual = @enigma.encrypt("hello world")
-
     expected =  {
                   encryption: "keder ohulw",
                   key: "02715",

@@ -32,9 +32,13 @@ module Encryption
     @original = character_set.find_index(char)
   end
 
+  def prepare_message(message)
+    @split_message = message.downcase.split("")
+  end
+
   def encrypted_message(message, shift)
-    split_message = message.downcase.split("")
-    split_message.map.with_index do |char, index|
+    prepare_message(message)
+    @split_message.map.with_index do |char, index|
       if character_set.include?(char)
         total_shift(shift, char, index)
         new_char_index = (@original + @offset) % 27
@@ -46,8 +50,8 @@ module Encryption
   end
 
   def decrypted_message(message, shift)
-    split_message = message.downcase.split("")
-    split_message.map.with_index do |char, index|
+    prepare_message(message)
+    @split_message.map.with_index do |char, index|
       if character_set.include?(char)
         total_shift(shift, char, index)
         new_char_index = (@original - @offset) % 27

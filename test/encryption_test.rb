@@ -65,8 +65,15 @@ class EncryptionTest < Minitest::Test
 
   def test_decryption_can_ignore_invalid_characters
     expected = "hello, world"
-    actual = actual = Encryption.decrypted_message("keder,sprrdx", [3,27,73,20])
+    actual = Encryption.decrypted_message("keder,sprrdx", [3,27,73,20])
     assert_equal expected, actual
+  end
+
+  def test_it_can_prepare_message
+    message = "HelLo!"
+    expected = ["h","e","l","l","o","!"]
+    actual = Encryption.prepare_message(message)
+    assert_equal expected, actual 
   end
 
 end
