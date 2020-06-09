@@ -14,7 +14,6 @@ include Encryption
       key: key,
       date: date
     }
-
   end
 
   def decrypt(cipher, key, date = nil)
@@ -26,7 +25,6 @@ include Encryption
       key: key,
       date: date
     }
-
   end
 
 end

@@ -1,7 +1,7 @@
 require 'pry'
 require 'date'
+
 module Encryption
-#  module_function
 
   def character_set
     ("a".."z").to_a << " "
@@ -75,5 +75,4 @@ module Encryption
   def date_today
     date = Date.today.strftime("%m%d%y")
   end
-
 end
