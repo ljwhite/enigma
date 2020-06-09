@@ -16,7 +16,10 @@ module Encryption
   end
 
   def create_offset(date)
-   ((date.to_i ** 2).to_s[-4..-1]).split("").map {|num| num.to_i}
+    return nil if date.length != 6
+    return nil if date[0,2].to_i > 12
+    return nil if date[2,2].to_i > 31
+    ((date.to_i ** 2).to_s[-4..-1]).split("").map {|num| num.to_i}
   end
 
   def final_shift(split_key, offset)

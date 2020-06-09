@@ -6,11 +6,27 @@ class EncryptionTest < Minitest::Test
   def test_it_can_split_key
     actual = Encryption.split_keys("02715")
     assert_equal [2,27,71,15], actual
+    assert_equal [0, 0, 0, 0], Encryption.split_keys("00000")
+  end
+
+  def test_character_set_is_valid
+    collection = Encryption.character_set
+    assert_includes collection, "a"
+    refute_includes collection, "!"
+    refute_includes collection, "A"
+    refute_includes collection, 5
+    assert_instance_of Array, collection
   end
 
   def test_it_can_create_offset
     actual = Encryption.create_offset("040895")
     assert_equal [1,0,2,5], actual
+    actual = Encryption.create_offset("0506956")
+    refute actual
+    actual = Encryption.create_offset("130895")
+    refute actual
+    actual = Encryption.create_offset("114295")
+    refute actual
   end
 
   def test_final_shift
@@ -43,6 +59,9 @@ class EncryptionTest < Minitest::Test
     actual = Encryption.encrypted_message("hello, world", [3, 27, 73, 20])
     expected =  "keder,sprrdx"
     assert_equal expected, actual
+    actual = Encryption.encrypted_message("123456789", [3, 27, 73,20])
+    expected = "123456789"
+    assert_equal expected, actual
   end
 
   def test_it_can_generate_random_5_digit_key
@@ -73,7 +92,7 @@ class EncryptionTest < Minitest::Test
     message = "HelLo!"
     expected = ["h","e","l","l","o","!"]
     actual = Encryption.prepare_message(message)
-    assert_equal expected, actual 
+    assert_equal expected, actual
   end
 
 end
