@@ -2,13 +2,12 @@ require_relative '../lib/enigma.rb'
 require_relative '../lib/encryption.rb'
 require 'date'
 
-class DecryptRunner < Enigma
+class DecryptRunner
 include Encryption
 
   def initialize
     @message_in = File.open(ARGV[0])
     @message_out = File.open(ARGV[1],"w")
-    @enigma = Enigma.new
   end
 
   def decrypt_message
