@@ -1,13 +1,14 @@
 require 'pry'
 require 'date'
+
 module Encryption
-  module_function
 
   def character_set
     ("a".."z").to_a << " "
   end
 
   def split_keys(key)
+    return nil if key.length != 5
     arr = []
     for i in 0..(key.length-2) do
       arr << key.slice(i,2).to_i
@@ -72,7 +73,6 @@ module Encryption
   end
 
   def date_today
-    date = Date.today.strftime("%m%d%y")
+    Date.today.strftime("%m%d%y")
   end
-
 end
