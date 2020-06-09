@@ -7,7 +7,9 @@ include Encryption
   def test_it_can_split_key
     actual = split_keys("02715")
     assert_equal [2,27,71,15], actual
-    assert_equal [0, 0, 0, 0], Encryption.split_keys("00000")
+    assert_equal [0, 0, 0, 0], split_keys("00000")
+    actual = split_keys("0271")
+    refute actual
   end
 
   def test_character_set_is_valid
